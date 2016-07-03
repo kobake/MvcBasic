@@ -11,7 +11,8 @@ namespace MvcBasic.Controllers
         // GET: Begin
         public ActionResult Index()
         {
-            return View();
+            return Content("こんにちは世界");
+            // return View();
         }
     }
 }
