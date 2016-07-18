@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MvcBasic.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,6 +9,8 @@ namespace MvcBasic.Controllers
 {
     public class BeginController : Controller
     {
+        private MvcBasicContext db = new MvcBasicContext();
+
         // GET: Begin
         public ActionResult Index()
         {
@@ -19,6 +22,11 @@ namespace MvcBasic.Controllers
         {
             ViewBag.Message = "埋め込みてすと";
             return View();
+        }
+
+        public ActionResult List()
+        {
+            return View(db.Members);
         }
     }
 }
