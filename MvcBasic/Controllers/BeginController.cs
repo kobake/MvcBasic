@@ -1,6 +1,8 @@
 ﻿using MvcBasic.Models;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
+using System.Diagnostics;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -26,6 +28,21 @@ namespace MvcBasic.Controllers
 
         public ActionResult List()
         {
+            IEnumerable<MvcBasic.Models.Member> model = null;
+            model = db.Members;
+            try
+            {
+                Debug.Print("hoge = " + model.ToString());
+            }
+            catch (SqlException ex)
+            {
+                foreach (var k in ex.Data.Keys)
+                {
+                    var v = ex.Data[k];
+                    Debug.Print(k + " = " + v);
+                }
+                Debug.Print("---");
+            }
             return View(db.Members);
         }
     }
