@@ -6,7 +6,7 @@ using System.Web;
 
 namespace MvcBasic.Models
 {
-    public class MvcBasicContext
+    public class MvcBasicContext : DbContext
     {
         public DbSet<Member> Members { get; set; }
     }
