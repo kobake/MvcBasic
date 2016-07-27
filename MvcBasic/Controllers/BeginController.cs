@@ -23,6 +23,7 @@ namespace MvcBasic.Controllers
         public ActionResult Show()
         {
             ViewBag.Message = "埋め込みてすと";
+            ViewBag.Message = "埋め込み" + db.Members.Count();
             return View();
         }
 
