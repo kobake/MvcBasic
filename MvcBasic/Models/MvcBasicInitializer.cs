@@ -13,14 +13,14 @@ namespace MvcBasic.Models
         {
             var members = new List<Member>{
                 new Member{
-                    Name="山田リオ3",
+                    Name="山田リオ4",
                     Email = "rio@wings.msn.to",
                     Birth = DateTime.Parse("1980-06-25"),
                     Married = false,
                     Memo = "ピアノが大好きです。"
                 },
                 new Member{
-                    Name="日尾直弘3",
+                    Name="日尾直弘4",
                     Email = "naohiro@wings.msn.to",
                     Birth= DateTime.Parse("1975-07-19"),
                     Married = false,
