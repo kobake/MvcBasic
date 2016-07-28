@@ -13,6 +13,15 @@ namespace MvcBasic.Controllers
     {
         private MvcBasicContext db = new MvcBasicContext();
 
+        public BeginController()
+        {
+            // db.Database.CommandTimeout = 3;
+            db.Database.Log = sql =>
+            {
+                Debug.Write("SQL: " + sql);
+            };
+        }
+
         // GET: Begin
         public ActionResult Index()
         {
