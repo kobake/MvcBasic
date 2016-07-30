@@ -7,6 +7,8 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using MvcBasic.Models;
+using System.Diagnostics;
+using System.Data.Entity.Infrastructure;
 
 namespace MvcBasic.Controllers
 {
@@ -82,8 +84,55 @@ namespace MvcBasic.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(member).State = EntityState.Modified;
+                Debug.Print("-------------------------");
+                Debug.Print("-------------------------");
+                Debug.Print("-------------------------");
+
+                if (false)
+                {
+                    Member test = db.Members.Find(member.Id);
+                    {
+                        Debug.Print("name = " + test.Name);
+                    }
+                }
+
+                Debug.Print("----STATE0----");
+                DbEntityEntry<Member> ent = db.Entry(member);
+                ent.State = EntityState.Modified;
                 db.SaveChanges();
+                Debug.Print("--------------");
+
+                if (false)
+                {
+                    // jikken
+                    Member test = db.Members.Find(member.Id);
+                    Debug.Print("name = " + test.Name);
+
+                    Debug.Print("----STATE1----");
+                    db.Entry(member).State = EntityState.Modified;
+                    Debug.Print("--------------");
+
+                    Debug.Print("----STATE2----");
+                    DbEntityEntry<Member> t = db.Entry(member);
+                    t.State = EntityState.Modified;
+                    Debug.Print("--------------");
+
+                    DbEntityEntry<Member> test2 = db.Entry(member);
+                    Debug.Print("name2 = " + test2.Entity.Name);
+
+                    test2.State = EntityState.Modified;
+                    db.SaveChanges();
+
+                    Debug.Print("name' = " + test.Name);
+                    Debug.Print("name2' = " + test2.Entity.Name);
+
+                    Member test3 = db.Members.Find(member.Id);
+                    Debug.Print("name3 = " + test3.Name);
+                }
+
+                // update
+                //db.Entry(member).State = EntityState.Modified;
+                //db.SaveChanges();
                 return RedirectToAction("Index");
             }
             return View(member);
